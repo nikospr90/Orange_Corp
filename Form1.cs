@@ -23,6 +23,7 @@ namespace Orange_Corp
                 "PNG files (*.png)|*.png|" +
                 "BMP Files (*.bmp)|*.bmp|" +
                 "JPG Files (*.jpg)|*.jpg|" +
+                "SYN Files (*.syn)|*.syn|" +
                 "All files (*.*)|*.*"; 
         }
         //Här bestämmer man om shapes färg, strorlek, plats, och vilken typ är den samt sparar den till Stack
@@ -173,29 +174,49 @@ namespace Orange_Corp
 
         private void save_btn_Click(object sender, EventArgs e)
         {
-            //För PNG variant
-            Bitmap bitmap = new Bitmap(pb_box.Width, pb_box.Height);
-
-            pb_box.DrawToBitmap(bitmap, new Rectangle(0, 0, pb_box.Width, pb_box.Height));
-
-            //För Json
-            //Gör Stack till json fil och spara den lokalt
-
+            
+            //För Json Variant
+            ////Gör Stack till json fil och spara den lokalt
             //var json = JsonConvert.SerializeObject(popStack, Formatting.Indented);
-
             var open = saveFileDialog1.ShowDialog();
+            var extension = Path.GetExtension(saveFileDialog1.FileName).ToLower();//Hämtar den valda extension av filen
 
             if (open == DialogResult.OK)
             {
-                //File.AppendAllText(saveFileDialog1.FileName, json);
-                bitmap.Save(saveFileDialog1.FileName, System.Drawing.Imaging.ImageFormat.Png);
+                if (extension == ".png")
+                {
+                    //För Png variant
+                    Bitmap bitmap = new Bitmap(pb_box.Width, pb_box.Height);
+
+                    pb_box.DrawToBitmap(bitmap, new Rectangle(0, 0, pb_box.Width, pb_box.Height));
+                    bitmap.Save(saveFileDialog1.FileName, System.Drawing.Imaging.ImageFormat.Png);
+                }
+                else if (extension == "*.bmp")
+                {
+                    //För Bmp variant
+                    Bitmap bitmap = new Bitmap(pb_box.Width, pb_box.Height);
+
+                    pb_box.DrawToBitmap(bitmap, new Rectangle(0, 0, pb_box.Width, pb_box.Height));
+                    bitmap.Save(saveFileDialog1.FileName, System.Drawing.Imaging.ImageFormat.Bmp);
+                }
+                else if (extension == "*.jpg")
+                {
+                    //För Jpeg variant
+                    Bitmap bitmap = new Bitmap(pb_box.Width, pb_box.Height);
+
+                    pb_box.DrawToBitmap(bitmap, new Rectangle(0, 0, pb_box.Width, pb_box.Height));
+                    bitmap.Save(saveFileDialog1.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+                }
+                else if (extension == ".syn")
+                {
+                    //För Json Variant
+                    //Gör Stack till json fil och spara den lokalt
+                    var json = JsonConvert.SerializeObject(popStack, Formatting.Indented);
+                    File.AppendAllText(saveFileDialog1.FileName, json);
+                    File.WriteAllText(saveFileDialog1.FileName, json);
+                }
             }
-
             //File.WriteAllText(saveFileDialog1.FileName, json);
-
-
-
-
         }
 
         private void saveFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
