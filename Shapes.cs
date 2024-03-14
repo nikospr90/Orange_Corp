@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Orange_Corp
 {
-    public abstract class Shapes
+    public class Shapes
     {
-        private string TypeID {  get;  }
+        public string? A_Shape { get; set ; }
         public Point Center { get; set; }
         public Color Color { get; set; }
+        public Rectangle Rectangle { get; set; }
     }
 }

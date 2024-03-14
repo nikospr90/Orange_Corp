@@ -8,8 +8,8 @@ namespace Orange_Corp
 {
     public class Circle : Shapes
     {
-        public int Radius {  get; set; }
-        
-        
+        public int Radius { get; set; }
+
+
     }
 }

@@ -8,6 +8,6 @@ namespace Orange_Corp
 {
     public class Square : Shapes
     {
-        public int Side {  get; set; }
+        public int Side { get; set; }
     }
 }

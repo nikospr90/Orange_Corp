@@ -16,7 +16,9 @@ namespace Orange_Corp
             { "Yellow", Color.Yellow },
             { "Orange", Color.Orange },
             { "Black", Color.Black },
-            { "Purple", Color.Purple }
+            { "Purple", Color.Purple },
+            { "Pink", Color.DeepPink },
+            { "White", Color.White}
         };
     }
 }
